@@ -1,75 +1,1200 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Creative Agent</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F7F7FB">
+<title>AI Creative Agent Team — One idea, five deliverables.</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* 기본 재질과 타이포 */
+:root{font-family:'Pretendard Variable',-apple-system,sans-serif;color:#14142B;background:#F7F7FB;font-synthesis:none;--spring:cubic-bezier(.2,1.3,.3,1)}
+.page{margin:0;word-break:keep-all;overflow-wrap:break-word}
+.page::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' opacity='.6' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+.glass{background:rgba(255,255,255,.55);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 80px -30px rgba(76,70,160,.25),inset 0 1px 0 #fff}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 20px;font:600 13px 'Pretendard Variable',sans-serif;white-space:nowrap;text-decoration:none;cursor:pointer;color:inherit;transition:transform .35s var(--spring),box-shadow .35s}
+.pill:hover{transform:translateY(-3px)}
+.primary{background:#14142B;color:#fff}
+.serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.025em}
+.eyebrow{font-size:26px;margin:0 0 12px;color:#78728e}
+.title{font-size:clamp(32px,4.2vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1.1;text-wrap:balance;margin:0}
+.gradient-text{background:linear-gradient(120deg,#4F6BFF,#8B5CF6 40%,#EC4899 70%,#FF7A45);background-clip:text;-webkit-background-clip:text;color:transparent}
+.section{max-width:1120px;margin:auto;padding:100px 28px;scroll-margin-top:96px}
+.section-head{text-align:center;margin-bottom:44px}
+.muted{color:#6B6B80}
+.nav{position:fixed;z-index:30;top:16px;left:50%;transform:translateX(-50%);box-sizing:border-box;width:min(1080px,calc(100% - 24px));height:60px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:8px 10px 8px 22px;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:750;text-decoration:none;color:inherit;white-space:nowrap}
+.brand-mark{width:24px;height:24px;border-radius:50%;background:linear-gradient(120deg,#6E8BFF,#A77BFF 40%,#FF8AC8 70%,#FFB37A);box-shadow:inset 0 2px 3px #ffffff90}
+.nav-links{display:flex;gap:27px}
+.nav-link{font-size:13px;text-decoration:none;color:#6B6B80}
+.nav-link:hover{color:#14142B}
+
+/* 히어로 */
+.mesh {
+  background:
+    radial-gradient(circle at 16% 18%, #8EA2FF 0 14%, transparent 32%),
+    radial-gradient(circle at 78% 9%, #FFB3D9 0 13%, transparent 30%),
+    radial-gradient(circle at 66% 62%, #FFD3A8 0 16%, transparent 34%),
+    radial-gradient(circle at 25% 74%, #9BE3FF 0 15%, transparent 32%),
+    radial-gradient(circle at 50% 32%, #C4A5FF 0 16%, transparent 36%),
+    linear-gradient(135deg, #fff, #F5F0FF 40%, #FFF7F0);
+}
+.hero{position:relative;isolation:isolate;margin:12px;border-radius:36px;padding:90px 24px 28px;overflow:hidden;text-align:center}
+.blob-field{position:absolute;inset:0;z-index:-1;pointer-events:none;transform:translateY(var(--parallax,0px))}
+.blob{position:absolute;width:65%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#C4A5FF99,transparent 68%);left:-10%;top:6%;animation:float 27s ease-in-out infinite alternate}
+.blob-two{left:55%;top:12%;background:radial-gradient(circle,#FFB3D9b0,transparent 68%);animation-delay:-12s}
+.badge{padding:7px 12px;font-size:10px;letter-spacing:.02em}
+.badge-dot{color:#715ced}
+.hero-serif{font-size:27px;margin:12px 0 8px}
+.hero-title{font-size:clamp(40px,6vw,88px);line-height:1.1;letter-spacing:-.04em;font-weight:800;text-wrap:balance;margin:0 auto;max-width:1050px}
+.hero-sub{font-size:15px;line-height:1.6;max-width:560px;margin:14px auto 22px;color:#59536f}
+.logo-strip{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 28px;margin:26px auto 0;font-size:11px;font-weight:650;color:#63597980}
+
+/* 실제 대화창 */
+.chat-card{width:min(860px,100%);box-sizing:border-box;margin:auto;border-radius:24px;overflow:hidden;text-align:left;scroll-margin-top:96px}
+.window-bar{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(20,20,43,.06);min-width:0}
+.traffic{display:flex;gap:5px;flex:none}
+.traffic-dot{height:6px;width:6px;background:#aaa5b8;border-radius:50%}
+.window-title{font-size:11px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.connection-dot{width:6px;height:6px;border-radius:50%;background:#a3a0ad;flex:none}
+.is-connected .connection-dot{background:#37b989;box-shadow:0 0 0 3px #37b98915}
+.reset{margin-left:auto;padding:6px 10px;font-size:10px;flex:none}
+.chat-foot{padding:0 18px 12px}
+.examples{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.examples::-webkit-scrollbar{display:none}
+.chip{padding:8px 12px;font-size:10px;border:1px solid #ffffffa0;background:#ffffff65}
+.is-started .examples{display:none}
+.composer{position:relative;display:flex;align-items:center;gap:8px;border:1px solid #ffffffdd;border-radius:30px;background:#ffffffa8;padding:7px 8px 7px 20px;min-height:44px;box-shadow:0 4px 16px #7660a309;transition:transform .35s var(--spring),box-shadow .35s}
+.composer:focus-within{transform:translateY(-2px);box-shadow:0 10px 25px #7660a31a}
+.input{box-sizing:border-box;flex:1;min-width:0;width:100%;resize:none;border:0;outline:none;background:transparent;font:400 14px/22px 'Pretendard Variable',sans-serif;color:#14142B;padding:8px 0;max-height:148px}
+.input::placeholder{color:#9994a6}
+.send{width:42px;height:42px;padding:0;font-size:23px;flex:none}
+.send:disabled{opacity:.3;cursor:default;transform:none}
+.disclaimer{font-size:9px;text-align:center;color:#878091;margin:8px 0 0}
+.status{font-size:11px;color:#7e738f;margin:0 0 10px}
+.is-connected .status{display:none}
+.work{display:none;align-items:center;gap:10px;margin:0 0 10px;color:#77648f;font-size:11px;flex-wrap:wrap}
+.is-working .work{display:flex}
+.work-dots{display:flex;gap:4px}
+.work-dot{width:4px;height:4px;background:#a884e5;border-radius:50%;animation:pulse 1.5s infinite;animation-delay:calc(var(--i)*.16s)}
+.work-hint{font-size:10px;width:100%;display:none}
+.is-long .work-hint{display:block}
+.suggestions{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.suggestions:not(:empty){margin-bottom:10px}
+.error-panel{display:none;padding:12px 4px}
+.is-error .error-panel{display:block}
+.is-error .composer,.is-error .status{display:none}
+.error-title{font-size:13px;margin:0 0 8px}
+.error-detail{font:10px/1.6 ui-monospace,monospace;overflow-wrap:anywhere;white-space:pre-wrap;color:#8b8298;margin-bottom:12px}
+.retry{font-size:11px}
+.floating{display:none;position:fixed;z-index:35;right:24px;bottom:24px;font-size:12px}
+.floating.is-visible{display:flex}
+
+/* 숫자와 파일 목업 */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:1050px;margin:auto;padding:46px 24px;border-bottom:1px solid rgba(20,20,43,.08)}
+.stat{text-align:center;border-right:1px solid rgba(20,20,43,.08)}
+.stat:last-child{border:0}
+.stat-number{font-size:38px;font-weight:750;letter-spacing:-.05em}
+.stat-label{font-size:12px;color:#858091;margin-top:5px}
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.feature-card{grid-column:span 2;border-radius:28px;overflow:hidden;background:#eeedf580;border:1px solid #fff;transition:transform .4s var(--spring)}
+.feature-card:hover{transform:translateY(-5px)}
+.feature-wide{grid-column:span 3}
+.mockup{height:220px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at center,#d8d0ff66,transparent 70%)}
+.feature-copy{padding:0 27px 28px}
+.feature-title{font-size:21px;letter-spacing:-.04em;margin:0 0 10px}
+.feature-description{font-size:13px;line-height:1.7;color:#777184;margin:0 0 20px;min-height:44px}
+.filename{font:10px ui-monospace,monospace;color:#9791a4}
+.slide{position:absolute;width:235px;height:138px;border:1px solid #fff;border-radius:9px;background:#fff9;box-shadow:0 15px 28px #64549a18;transition:transform .65s var(--spring);overflow:hidden}
+.slide-back{transform:translate(-35px,-7px) rotate(-12deg);background:#d5c9fc}
+.slide-middle{transform:translate(25px,0) rotate(9deg);background:#f4cfe2}
+.slide-front{transform:rotate(-3deg);background:linear-gradient(120deg,#e2e8ff,#f7e0f1 70%,#ffe6cf)}
+.slide-kicker{position:absolute;left:20px;top:18px;font:8px ui-monospace,monospace;letter-spacing:1px}
+.slide-title{position:absolute;left:20px;top:48px;font-size:24px;font-weight:800;line-height:1.05;letter-spacing:-.05em}
+.slide-circle{position:absolute;width:115px;height:115px;border-radius:50%;background:linear-gradient(135deg,#9c92ed88,#ec9fc8);right:-15px;bottom:-30px}
+.feature-card:hover .slide-back{transform:translate(-65px,-15px) rotate(-19deg)}
+.feature-card:hover .slide-middle{transform:translate(65px,-8px) rotate(17deg)}
+.poster{width:132px;height:178px;background:linear-gradient(145deg,#6452df,#a35cdb 45%,#ff9b85);border-radius:5px;transform:rotate(7deg);color:white;box-shadow:0 20px 40px #7052b333;position:relative;overflow:hidden;transition:transform .5s var(--spring)}
+.poster-orb{position:absolute;bottom:-32px;right:-35px;width:150px;height:150px;border-radius:50%;background:linear-gradient(130deg,#ffffff80,#ffcba560);border:1px solid #ffffff80}
+.poster-text{position:absolute;left:16px;top:25px;font-weight:800;font-size:27px;line-height:.98;letter-spacing:-.05em}
+.poster-small{position:absolute;left:16px;bottom:15px;font:7px ui-monospace,monospace}
+.feature-card:hover .poster{transform:rotate(0) translateY(-4px)}
+.document{width:137px;height:177px;background:white;border-radius:4px;box-shadow:0 15px 30px #67578c20;transform:rotate(-6deg);overflow:hidden;transition:transform .5s var(--spring)}
+.document-cover{height:65px;background:linear-gradient(120deg,#c7c7fa,#edc8df);padding:17px 14px 0;font-size:16px;font-weight:750;box-sizing:border-box}
+.document-lines{padding:18px 14px;display:grid;gap:7px}
+.line{height:3px;border-radius:2px;background:#e7e5ed}
+.line-short{width:65%}
+.feature-card:hover .document{transform:rotate(0)}
+.browser-mock{width:244px;height:155px;border-radius:9px;border:1px solid white;background:#fff9;box-shadow:0 15px 28px #64549a18;transform:rotate(4deg);overflow:hidden;transition:transform .5s var(--spring)}
+.browser-top{display:flex;gap:4px;padding:9px;border-bottom:1px solid #e8e4ee}
+.browser-dot{width:4px;height:4px;border-radius:50%;background:#cbc5d7}
+.browser-content{padding:17px;background:linear-gradient(130deg,#e1e5ff,#f8deea);height:100%;text-align:center}
+.browser-label{font-size:8px;color:#7c7291}
+.browser-title{font-size:20px;letter-spacing:-.05em;font-weight:800;margin:5px 0 12px}
+.mini-button{display:inline-block;border-radius:20px;padding:5px 11px;background:#252039;color:#fff;font-size:6px}
+.feature-card:hover .browser-mock{transform:rotate(0) scale(1.03)}
+.budget{width:215px;padding:19px;border-radius:15px;background:#ffffffb0;border:1px solid white;box-shadow:0 15px 28px #64549a12}
+.budget-label{font:8px ui-monospace,monospace;color:#9b92aa}
+.budget-value{font-size:26px;font-weight:750;letter-spacing:-.05em;margin:7px 0 12px}
+.bars{display:flex;align-items:flex-end;gap:9px;height:65px;border-bottom:1px solid #e2ddea}
+.bar{flex:1;height:var(--h);border-radius:4px 4px 0 0;background:linear-gradient(#a4a4f6,#d5c7f5);transform:scaleY(.08);transform-origin:bottom;transition:transform 1.2s var(--spring)}
+.is-in-view .bar{transform:scaleY(1)}
+
+/* 팀과 테마 */
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.orbit-card{border-radius:32px;overflow:hidden;background:radial-gradient(circle,#ded6ff99,transparent 70%),#eeedf580;border:1px solid #fff;padding:30px 0}
+.orbit-caption{text-align:center;font:10px ui-monospace,monospace;letter-spacing:.1em;color:#9b90b2;margin:30px 0 0}
+.leader{background:linear-gradient(135deg,#ffffffd9,#ffffff50);border:1px solid white;box-shadow:0 15px 35px #7866ac22,inset 0 3px 8px #fff;color:#6c54c4}
+.steps{display:grid;gap:27px}
+.step{display:flex;gap:18px}
+.step-number{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#e9e5f5;color:#8d7cbb;font:12px ui-monospace,monospace}
+.step-title{font-size:17px;margin:2px 0 7px;letter-spacing:-.03em}
+.step-description{font-size:13px;line-height:1.8;color:#858091;margin:0}
+.design{background:linear-gradient(115deg,#5B3DF5,#FF4FA3 65%,#FF9F45);color:white;overflow:hidden;position:relative}
+.design-inner{max-width:1120px;margin:auto;padding:80px 28px}
+.design .eyebrow{color:#ffffffbd}
+.design-sub{font-size:15px;color:#ffffffbd;line-height:1.7;margin:20px 0 0}
+.themes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.theme-card{background:#ffffff14;border:1px solid #ffffff40;border-radius:20px;padding:23px 17px;backdrop-filter:blur(24px)}
+.swatches{display:flex;margin-bottom:25px}
+.swatch{width:31px;height:31px;border-radius:50%;background:var(--color);border:2px solid #ffffff80}
+.swatch+.swatch{margin-left:-8px}
+.theme-name{font-size:15px;font-weight:700;margin-bottom:7px}
+.theme-use{font-size:10px;color:#ffffffb0;white-space:nowrap}
+.prompts{max-width:none;overflow:hidden;padding-left:0;padding-right:0}
+.marquee{display:flex;width:max-content;gap:12px;animation:marquee 45s linear infinite;margin-bottom:12px}
+.marquee-reverse{animation-direction:reverse;margin-left:-120px}
+.marquee:hover,.marquee:focus-within{animation-play-state:paused}
+.prompt-chip{font-size:14px;padding:17px 25px;color:#797185}
+.cta{margin:0 12px;border-radius:36px;text-align:center;padding:85px 20px;overflow:hidden}
+.cta-title{font-size:clamp(40px,6vw,88px);margin:0 0 28px}
+.footer{max-width:1120px;margin:auto;padding:35px 28px;display:flex;gap:20px;justify-content:space-between;font-size:10px;color:#9690a1}
+.footer-brand{font-weight:700;color:#635d73}
+.reveal-pending{opacity:0;transform:translateY(24px);filter:blur(7px)}
+.reveal-ready{transition:opacity .8s ease,transform .8s var(--spring),filter .8s ease;transition-delay:var(--delay,0ms)}
+
+@keyframes float{to{transform:translate(12%,9%) scale(1.15)}}
+@keyframes pulse{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1.3)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* 검증된 궤도 및 Web Chat 레이아웃 */
+.orbit { --r: 150px; position: relative; width: calc(var(--r) * 2); aspect-ratio: 1; margin: 48px auto; }
+.orbit-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed rgba(20,20,43,.16); animation: orbit-spin 40s linear infinite; }
+.orbit .agent { position: absolute; left: 50%; top: 50%; transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a))); }
+.orbit .agent b { position: absolute; translate: -50% -50%; white-space: nowrap; padding: 8px 12px; border-radius: 999px; font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: #5B4BC4; background: rgba(255,255,255,.8); border: 1px solid #fff; animation: orbit-spin 40s linear infinite reverse; }
+.orbit .leader { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 112px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-weight: 800; }
+@keyframes orbit-spin { to { rotate: 360deg; } }
+@media (max-width: 600px) {
+  .orbit { --r: 100px; }
+  .orbit .agent b { font-size: 10px; padding: 6px 9px; }
+  .orbit .leader { width: 84px; }
+}
+
+/* 첫 메시지를 보낸 뒤 화면 높이로 확장 */
+.chat-card { display: flex; flex-direction: column; }
+.chat-card > * { flex: none; }
+.chat-card > #webchat { height: 200px; min-height: 0; }
+body.is-started .chat-card { height: calc(100svh - 112px); }
+body.is-started .chat-card > #webchat { flex: 1 1 0; height: auto; min-height: 0; }
+
+/* 작업 중 오로라 테두리 */
+@property --aurora { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.composer::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .6s;
+  background: conic-gradient(from var(--aurora), #a5b4fc, #f0abfc, #fda4af, #fcd34d, #86efac, #67e8f9, #a5b4fc);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: aurora 6s linear infinite;
+}
+body.is-working .composer::before { opacity: .8; }
+@keyframes aurora { to { --aurora: 360deg; } }
+
+/* Web Chat 기본 요소와 첨부 파일 */
+#webchat .webchat__typing-indicator { display: none !important; }
+#webchat .webchat__stacked-layout:not(.webchat__stacked-layout--from-user) .webchat__stacked-layout__status { display: none; }
+#webchat .webchat__stacked-layout__attachment-row { margin-top: 8px !important; }
+#webchat .webchat__stacked-layout__attachment,
+#webchat .webchat__stacked-layout__attachment .webchat__bubble__content {
+  background: none !important;
+  border: 0 !important;
+  overflow: visible !important;
+}
+#webchat .webchat__stacked-layout__content:has(.webchat__fileContent) { overflow: visible !important; }
+#webchat .webchat__fileContent { padding: 0 !important; }
+#webchat .webchat__fileContent__buttonLink {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  padding: 0 18px 0 12px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #14142B;
+  background: rgba(255,255,255,.72);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.8);
+  box-shadow: 0 10px 24px -16px rgba(76,70,160,.3), inset 0 1px 1px #fff;
+}
+#webchat .webchat__fileContent__buttonLink::before {
+  content: "FILE";
+  flex: none;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #EEF0FF, #FBEFFF);
+  color: #5B4BC4;
+  font: 600 10.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .04em;
+}
+#webchat a[download$=".pptx" i]::before { content: "PPTX"; }
+#webchat a[download$=".docx" i]::before { content: "DOCX"; }
+#webchat a[download$=".xlsx" i]::before { content: "XLSX"; }
+#webchat a[download$=".html" i]::before { content: "HTML"; }
+#webchat .webchat__fileContent__badge { flex: 1; min-width: 0; background: none !important; padding: 0 !important; }
+#webchat .webchat__fileContent__fileName {
+  font: 13px ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  color: #14142B !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#webchat .webchat__fileContent__downloadIcon {
+  flex: none;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  fill: #6B6B80;
+  color: #6B6B80;
+}
+
+/* 에이전트 답의 한글 줄바꿈과 마크다운 표 */
+#webchat .webchat__render-markdown { word-break: keep-all; overflow-wrap: anywhere; line-height:1.7; }
+#webchat .webchat__render-markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 12px 0;
+  font-variant-numeric: tabular-nums;
+}
+#webchat .webchat__render-markdown th,
+#webchat .webchat__render-markdown td {
+  padding: 9px 18px 9px 0;
+  border-bottom: 1px solid rgba(20,20,43,.08);
+  white-space: nowrap;
+}
+#webchat .webchat__render-markdown th { font-size: 12px; font-weight: 600; color: #6B6B80; }
+
+/* 반응형 */
+@media(min-width:1000px){
+  .hero-title{max-width:1100px;font-size:76px}
+  .hero{padding-top:91px}
+  .hero-sub{margin-bottom:20px}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .nav{height:54px;top:12px;padding-left:15px;gap:8px}
+  .brand{font-size:11px;gap:7px}
+  .brand-mark{width:20px;height:20px;flex:none}
+  .nav-cta{font-size:10px;padding:11px 13px}
+  .hero{padding:82px 12px 24px;border-radius:28px}
+  .hero-title{font-size:40px;max-width:350px}
+  .hero-serif{font-size:23px;margin:11px 0 9px}
+  .hero-sub{font-size:12px;line-height:1.65;max-width:290px;margin:12px auto 18px}
+  .badge{font-size:9px}
+  .chat-card{border-radius:20px}
+  .window-bar{padding:10px 12px;gap:8px}
+  .window-title{font-size:9px}
+  .reset{font-size:9px;padding:5px 8px}
+  .chat-foot{padding:0 10px 10px}
+  .chip{font-size:9px;padding:7px 10px}
+  .examples{margin-bottom:9px}
+  .input{font-size:12px}
+  .disclaimer{font-size:8px}
+  .logo-strip{font-size:8px;gap:9px 17px;margin-top:21px}
+  .section{padding:66px 20px}
+  .section-head{margin-bottom:30px}
+  .eyebrow{font-size:23px}
+  .title{font-size:34px}
+  .stats{padding:30px 14px}
+  .stat-number{font-size:29px}
+  .stat-label{font-size:9px}
+  .bento{grid-template-columns:1fr;gap:14px}
+  .feature-card,.feature-wide{grid-column:auto}
+  .mockup{height:205px}
+  .feature-description{min-height:0}
+  .how-grid{grid-template-columns:1fr;gap:35px}
+  .orbit-card{padding:15px 0}
+  .orbit-caption{font-size:8px}
+  .steps{gap:25px}
+  .themes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .theme-card:last-child{grid-column:span 2}
+  .theme-card{padding:19px}
+  .design-inner{padding:62px 20px}
+  .design-sub{font-size:13px}
+  .swatches{margin-bottom:17px}
+  .prompts{padding-left:0;padding-right:0}
+  .prompt-chip{font-size:12px;padding:13px 19px}
+  .cta{padding:65px 16px;border-radius:28px}
+  .cta-title{font-size:43px}
+  .footer{flex-wrap:wrap;gap:10px;padding:27px 24px;font-size:9px}
+  .footer-brand{width:100%}
+  .floating{right:14px;bottom:16px}
+  .work{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .blob,.marquee,.orbit-ring,.orbit .agent b,.work-dot,.composer::before{animation:none!important}
+  .reveal-ready,.bar,.pill,.feature-card,.slide,.poster,.document,.browser-mock,.composer{transition:none!important}
+  .reveal-pending{opacity:1;transform:none;filter:none}
+}
+</style>
 </head>
-<body>
-  <p id="status" role="status" aria-live="polite">채팅에 연결하는 중입니다...</p>
-  <div id="webchat" style="height: 600px"></div>
-  <script src="https://cdn.botframework.com/botframework-webchat/4.18.0/webchat.js"></script>
-  <script>
+<body class="page">
+
+<nav class="nav glass" aria-label="주 메뉴">
+  <a class="brand" href="#" aria-label="처음으로">
+    <span class="brand-mark"></span>AI Creative Agent Team
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#features">기능</a>
+    <a class="nav-link" href="#how">작동 방식</a>
+    <a class="nav-link" href="#design">디자인</a>
+  </div>
+  <button class="pill primary nav-cta" data-chat>
+    지금 써 보기 <span aria-hidden="true">↗</span>
+  </button>
+</nav>
+
+<main>
+  <section class="hero mesh" aria-labelledby="hero-title">
+    <div class="blob-field" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="blob blob-two"></div>
+    </div>
+
+    <div class="pill glass badge">
+      <span class="badge-dot">●</span> Copilot Studio 멀티 에이전트
+    </div>
+    <p class="serif hero-serif">One idea, five deliverables.</p>
+    <h1 class="hero-title" id="hero-title">
+      한 줄의 아이디어,<br>
+      <span class="gradient-text">다섯 개의 결과물.</span>
+    </h1>
+    <p class="hero-sub">
+      팀장 에이전트가 전문가 다섯에게 일을 나눠,<br>
+      발표자료부터 예산 분석까지 한 번에 만들어 드려요.
+    </p>
+
+    <section class="chat-card glass" aria-label="AI Creative Agent Team 대화창">
+      <div class="window-bar">
+        <div class="traffic" aria-hidden="true">
+          <i class="traffic-dot"></i>
+          <i class="traffic-dot"></i>
+          <i class="traffic-dot"></i>
+        </div>
+        <span class="window-title">AI Creative Agent Team</span>
+        <span class="connection-dot" role="img" aria-label="연결 중"></span>
+        <button class="pill glass reset" id="reset">새 대화 ↗</button>
+      </div>
+
+      <div id="webchat" role="region" aria-label="대화 내용"></div>
+
+      <div class="chat-foot">
+        <div class="examples">
+          <button class="pill chip" data-example="가을 학교 축제 기획해 줘" disabled>
+            가을 학교 축제 기획해 줘 ↗
+          </button>
+          <button class="pill chip" data-example="탄소중립 캠페인 홍보물 만들어 줘" disabled>
+            탄소중립 캠페인 홍보물 만들어 줘 ↗
+          </button>
+          <button class="pill chip" data-example="교사 AI 연수 프로그램 제안해 줘" disabled>
+            교사 AI 연수 프로그램 제안해 줘 ↗
+          </button>
+        </div>
+
+        <div class="work" role="status" aria-live="polite">
+          <span class="work-dots" aria-hidden="true">
+            <i class="work-dot" style="--i:0"></i>
+            <i class="work-dot" style="--i:1"></i>
+            <i class="work-dot" style="--i:2"></i>
+            <i class="work-dot" style="--i:3"></i>
+            <i class="work-dot" style="--i:4"></i>
+          </span>
+          <span id="work-label">팀이 작업 중 · 0:00</span>
+          <span class="work-hint">파일 5개를 만드느라 몇 분 걸릴 수 있어요</span>
+        </div>
+
+        <div class="suggestions" id="suggestions" aria-label="제안된 답변"></div>
+        <p class="status" id="status" role="status" aria-live="polite">팀을 부르는 중…</p>
+
+        <form class="composer" id="composer">
+          <textarea class="input" id="input" rows="1" placeholder="무엇을 만들어 볼까요?" aria-label="팀에게 보낼 메시지" disabled></textarea>
+          <button class="pill primary send" id="send" type="submit" aria-label="메시지 보내기" disabled>↑</button>
+        </form>
+
+        <div class="error-panel" role="status">
+          <p class="error-title">지금은 팀과 연결할 수 없어요</p>
+          <div class="error-detail" id="error-detail"></div>
+          <button class="pill glass retry" id="retry">다시 시도 ↗</button>
+        </div>
+
+        <p class="disclaimer">AI는 실수할 수 있어요. 중요한 내용은 확인하세요.</p>
+      </div>
+    </section>
+  </section>
+
+  <div class="logo-strip" aria-label="사용하는 도구">
+    <span>Microsoft Copilot Studio</span>
+    <span>Claude Opus 5.5</span>
+    <span>PowerPoint</span>
+    <span>Word</span>
+    <span>Excel</span>
+    <span>HTML</span>
+  </div>
+
+  <div class="stats" data-reveal>
+    <div class="stat">
+      <div class="stat-number"><span data-count="1">1</span></div>
+      <div class="stat-label">번의 요청</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number"><span data-count="6">6</span></div>
+      <div class="stat-label">명의 에이전트</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number"><span data-count="7">7</span></div>
+      <div class="stat-label">개의 작업 매뉴얼</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number"><span data-count="5">5</span></div>
+      <div class="stat-label">개의 파일</div>
+    </div>
+  </div>
+
+  <section class="section" id="features">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow serif">Five deliverables.</p>
+      <h2 class="title">한 번의 요청으로 받는 다섯 가지</h2>
+    </div>
+
+    <div class="bento">
+      <article class="feature-card feature-wide" data-reveal>
+        <div class="mockup" aria-hidden="true">
+          <div class="slide slide-back"></div>
+          <div class="slide slide-middle"></div>
+          <div class="slide slide-front">
+            <span class="slide-kicker">A NEW PERSPECTIVE / 2026</span>
+            <div class="slide-circle"></div>
+            <div class="slide-title">Ideas worth<br>sharing.</div>
+          </div>
+        </div>
+        <div class="feature-copy">
+          <h3 class="feature-title">말할 거리가 정리된 10장</h3>
+          <p class="feature-description">
+            10장 내외 슬라이드와 발표자 노트까지.<br>
+            이제, 이야기하는 데만 집중하세요.
+          </p>
+          <span class="filename">presentation.pptx ↗</span>
+        </div>
+      </article>
+
+      <article class="feature-card feature-wide" data-reveal>
+        <div class="mockup" aria-hidden="true">
+          <div class="poster">
+            <div class="poster-orb"></div>
+            <div class="poster-text">MAKE<br>SOME<br>WAVES.</div>
+            <span class="poster-small">YOUR NEXT BIG THING / 2026</span>
+          </div>
+        </div>
+        <div class="feature-copy">
+          <h3 class="feature-title">걸어 두고 싶은 한 장</h3>
+          <p class="feature-description">
+            브라우저에서 바로 여는 유리 질감 포스터.<br>
+            인쇄와 PDF 저장까지 자연스럽게.
+          </p>
+          <span class="filename">poster.html ↗</span>
+        </div>
+      </article>
+
+      <article class="feature-card" data-reveal>
+        <div class="mockup" aria-hidden="true">
+          <div class="document">
+            <div class="document-cover">The next<br>chapter.</div>
+            <div class="document-lines">
+              <i class="line"></i>
+              <i class="line"></i>
+              <i class="line line-short"></i>
+              <i class="line"></i>
+              <i class="line"></i>
+              <i class="line line-short"></i>
+              <i class="line"></i>
+            </div>
+          </div>
+        </div>
+        <div class="feature-copy">
+          <h3 class="feature-title">바로 보낼 수 있는 제안서</h3>
+          <p class="feature-description">
+            테마 색 표지와 읽기 좋은 흰 본문.<br>
+            생각이 설득력 있는 문서가 됩니다.
+          </p>
+          <span class="filename">proposal.docx ↗</span>
+        </div>
+      </article>
+
+      <article class="feature-card" data-reveal>
+        <div class="mockup" aria-hidden="true">
+          <div class="browser-mock">
+            <div class="browser-top">
+              <i class="browser-dot"></i>
+              <i class="browser-dot"></i>
+              <i class="browser-dot"></i>
+            </div>
+            <div class="browser-content">
+              <div class="browser-label serif">Something wonderful is coming.</div>
+              <div class="browser-title">Meet your next idea.</div>
+              <span class="mini-button">지금 신청하기 ↗</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-copy">
+          <h3 class="feature-title">신청까지 받는 랜딩</h3>
+          <p class="feature-description">
+            유리 메뉴 바와 카드로 만든<br>
+            소개·신청 페이지를 바로 열어 보세요.
+          </p>
+          <span class="filename">webpage.html ↗</span>
+        </div>
+      </article>
+
+      <article class="feature-card" data-reveal>
+        <div class="mockup" aria-hidden="true">
+          <div class="budget">
+            <div class="budget-label">TOTAL ESTIMATED BUDGET</div>
+            <div class="budget-value">₩12,400,000</div>
+            <div class="bars">
+              <i class="bar" style="--h:35%"></i>
+              <i class="bar" style="--h:62%"></i>
+              <i class="bar" style="--h:48%"></i>
+              <i class="bar" style="--h:87%"></i>
+              <i class="bar" style="--h:72%"></i>
+              <i class="bar" style="--h:100%"></i>
+            </div>
+          </div>
+        </div>
+        <div class="feature-copy">
+          <h3 class="feature-title">숫자가 맞는 예산</h3>
+          <p class="feature-description">
+            숫자 카드와 차트로 한눈에.<br>
+            합계는 수식으로 정확하게 계산해요.
+          </p>
+          <span class="filename">budget_analysis.xlsx ↗</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow serif">How the team works.</p>
+      <h2 class="title">팀장 하나, 전문가 다섯,<br>매뉴얼 일곱.</h2>
+    </div>
+
+    <div class="how-grid">
+      <div class="orbit-card" data-reveal>
+        <div class="orbit">
+          <div class="orbit-ring">
+            <span class="agent" style="--a:0deg"><b>ppt-agent</b></span>
+            <span class="agent" style="--a:72deg"><b>poster-agent</b></span>
+            <span class="agent" style="--a:144deg"><b>proposal-agent</b></span>
+            <span class="agent" style="--a:216deg"><b>webpage-agent</b></span>
+            <span class="agent" style="--a:288deg"><b>budget-agent</b></span>
+          </div>
+          <div class="leader">팀장</div>
+        </div>
+        <p class="orbit-caption">ONE BRIEF. ONE TEAM. ALL CONNECTED.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step" data-reveal>
+          <span class="step-number">01</span>
+          <div>
+            <h3 class="step-title">브리프</h3>
+            <p class="step-description">
+              요청을 한 장짜리 기획서로 정리하고<br>
+              컬러 테마를 정해요.
+            </p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-number">02</span>
+          <div>
+            <h3 class="step-title">예산 먼저</h3>
+            <p class="step-description">
+              budget-agent가 예산 기준표로<br>
+              모든 금액의 기준을 잡아요.
+            </p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-number">03</span>
+          <div>
+            <h3 class="step-title">원고</h3>
+            <p class="step-description">
+              전문가들이 같은 브리프로<br>
+              각자 원고를 써요.
+            </p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-number">04</span>
+          <div>
+            <h3 class="step-title">파일 5개</h3>
+            <p class="step-description">
+              디자인 규칙에 맞춰 파일을 만들어<br>
+              한 번에 첨부해요.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="design" id="design" style="scroll-margin-top:96px">
+    <div class="design-inner">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow serif">One design language.</p>
+        <h2 class="title">다섯 파일,<br>하나의 리퀴드 글래스.</h2>
+        <p class="design-sub">
+          재질과 레이아웃은 늘 같고,<br>
+          색만 주제에 맞게 바뀝니다.
+        </p>
+      </div>
+
+      <div class="themes">
+        <div class="theme-card" data-reveal>
+          <div class="swatches">
+            <i class="swatch" style="--color:#A8D8FF"></i>
+            <i class="swatch" style="--color:#007AFF"></i>
+          </div>
+          <div class="theme-name">스카이</div>
+          <div class="theme-use">교육·일반 행사</div>
+        </div>
+        <div class="theme-card" data-reveal>
+          <div class="swatches">
+            <i class="swatch" style="--color:#1EC8FF"></i>
+            <i class="swatch" style="--color:#FF2E93"></i>
+          </div>
+          <div class="theme-name">팝</div>
+          <div class="theme-use">IT 캠페인·축제</div>
+        </div>
+        <div class="theme-card" data-reveal>
+          <div class="swatches">
+            <i class="swatch" style="--color:#0B1628"></i>
+            <i class="swatch" style="--color:#6EA8FF"></i>
+          </div>
+          <div class="theme-name">네이비</div>
+          <div class="theme-use">공공 보고서·정책</div>
+        </div>
+        <div class="theme-card" data-reveal>
+          <div class="swatches">
+            <i class="swatch" style="--color:#A8E3C4"></i>
+            <i class="swatch" style="--color:#12A150"></i>
+          </div>
+          <div class="theme-name">그린</div>
+          <div class="theme-use">환경·ESG</div>
+        </div>
+        <div class="theme-card" data-reveal>
+          <div class="swatches">
+            <i class="swatch" style="--color:#FFC2B3"></i>
+            <i class="swatch" style="--color:#FF6B4A"></i>
+          </div>
+          <div class="theme-name">코럴</div>
+          <div class="theme-use">가족·복지</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section prompts">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow serif">Ready prompts.</p>
+      <h2 class="title">이런 요청에 강해요</h2>
+    </div>
+    <div class="marquee" id="prompts-one"></div>
+    <div class="marquee marquee-reverse" id="prompts-two"></div>
+  </section>
+
+  <section class="cta mesh" data-reveal>
+    <p class="eyebrow serif">Your turn.</p>
+    <h2 class="title cta-title">지금, 아이디어 한 줄을<br>적어 보세요.</h2>
+    <button class="pill primary" data-chat>대화 시작하기 ↑</button>
+  </section>
+</main>
+
+<footer class="footer">
+  <span class="footer-brand">AI Creative Agent Team</span>
+  <span>Copilot Studio로 만든 멀티 에이전트</span>
+  <span>© 2026</span>
+</footer>
+
+<button class="pill glass floating" id="floating" aria-label="대화창으로 이동">
+  팀이 작업 중 · 0:00
+</button>
+
+<script src="https://cdn.botframework.com/botframework-webchat/4.18.0/webchat.js"></script>
+<script>
+/* ① 등장 효과·숫자·이동 버튼 */
+const body = document.body;
+const card = document.querySelector('.chat-card');
+const input = document.getElementById('input');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function goToChat() {
+  window.scrollTo({
+    top: card.getBoundingClientRect().top + window.scrollY - 88,
+    behavior: "smooth"
+  });
+  input.focus({ preventScroll: true });
+}
+
+document.querySelectorAll('[data-chat]').forEach(button => {
+  button.addEventListener('click', goToChat);
+});
+
+document.getElementById('reset').addEventListener('click', () => {
+  window.location.reload();
+});
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    const section = document.querySelector(link.getAttribute('href'));
+    window.scrollTo({
+      top: section.getBoundingClientRect().top + window.scrollY - 96,
+      behavior: reducedMotion ? 'instant' : 'smooth'
+    });
+  });
+});
+
+const promptNames = [
+  '가을 학교 축제',
+  '탄소중립 캠페인',
+  '교사 AI 연수',
+  '신제품 런칭 행사',
+  '진로 체험 주간',
+  '지역 축제 홍보',
+  '고객 제안 워크숍',
+  '학부모 설명회',
+  '해커톤',
+  '동아리 박람회'
+];
+
+['prompts-one','prompts-two'].forEach((id, row) => {
+  const track = document.getElementById(id);
+  const names = promptNames.slice(row * 5, row * 5 + 5);
+
+  for (let copy = 0; copy < 2; copy++) {
+    names.forEach(name => {
+      const button = document.createElement('button');
+      button.className = 'pill glass prompt-chip';
+      button.textContent = name + ' ↗';
+
+      if (copy) {
+        button.tabIndex = -1;
+        button.setAttribute('aria-hidden','true');
+      }
+
+      button.addEventListener('click', () => {
+        input.value = name + ' 기획해 줘';
+        resizeInput();
+        goToChat();
+      });
+
+      track.append(button);
+    });
+  }
+});
+
+function countUp(node) {
+  const target = Number(node.dataset.count);
+  const start = performance.now();
+
+  if (reducedMotion) return;
+
+  function tick(now) {
+    const progress = Math.min((now - start) / 1100, 1);
+    node.textContent = Math.round(
+      target * (1 - Math.pow(1 - progress, 3))
+    );
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.remove('reveal-pending');
+      entry.target.classList.add('is-in-view');
+      entry.target.querySelectorAll('[data-count]').forEach(countUp);
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: .12 });
+
+  document.querySelectorAll('[data-reveal]').forEach((node, index) => {
+    node.style.setProperty('--delay', (index % 5) * 80 + 'ms');
+    node.classList.add('reveal-ready');
+    if (!reducedMotion) node.classList.add('reveal-pending');
+    revealObserver.observe(node);
+  });
+}
+
+let scrollFrame = false;
+
+window.addEventListener('scroll', () => {
+  if (scrollFrame || reducedMotion) return;
+
+  scrollFrame = true;
+  requestAnimationFrame(() => {
+    document.querySelector('.blob-field').style.setProperty(
+      '--parallax',
+      Math.min(window.scrollY * .12, 90) + 'px'
+    );
+    scrollFrame = false;
+  });
+}, { passive: true });
+
+/* ② 대화창 상태·입력·제안 버튼 */
+const sendButton = document.getElementById('send');
+const floating = document.getElementById('floating');
+const suggestions = document.getElementById('suggestions');
+const status = document.getElementById('status');
+
+let store;
+let directLine;
+let workingSince = 0;
+let workTimer;
+let chatVisible = true;
+let resultWaiting = false;
+let connectionSubscription;
+
+function resizeInput() {
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight,148) + 'px';
+  input.style.overflowY = input.scrollHeight > 148 ? 'auto' : 'hidden';
+  sendButton.disabled =
+    !body.classList.contains('is-connected') || !input.value.trim();
+}
+
+input.addEventListener('input', resizeInput);
+
+input.addEventListener('keydown', event => {
+  if (
+    event.key === 'Enter' &&
+    !event.shiftKey &&
+    !event.isComposing &&
+    event.keyCode !== 229
+  ) {
+    event.preventDefault();
+    sendMessage(input.value);
+  }
+});
+
+document.getElementById('composer').addEventListener('submit', event => {
+  event.preventDefault();
+  sendMessage(input.value);
+});
+
+document.querySelectorAll('[data-example]').forEach(button => {
+  button.addEventListener('click', () => {
+    sendMessage(button.dataset.example);
+  });
+});
+
+function elapsed() {
+  const seconds = Math.floor((Date.now() - workingSince) / 1000);
+  return Math.floor(seconds / 60) + ':' +
+    String(seconds % 60).padStart(2,'0');
+}
+
+function updateFloating() {
+  const working = body.classList.contains('is-working');
+  floating.classList.toggle(
+    'is-visible',
+    !chatVisible && (working || resultWaiting)
+  );
+  floating.textContent = working
+    ? '팀이 작업 중 · ' + elapsed()
+    : '결과가 도착했어요 ↑';
+}
+
+function updateWork() {
+  document.getElementById('work-label').textContent =
+    '팀이 작업 중 · ' + elapsed();
+  body.classList.toggle('is-long', Date.now() - workingSince >= 20000);
+  updateFloating();
+}
+
+function sendMessage(text) {
+  text = text.trim();
+
+  if (
+    !text ||
+    !store ||
+    !body.classList.contains('is-connected')
+  ) return;
+
+  body.classList.add('is-started','is-working');
+  body.classList.remove('is-long');
+
+  resultWaiting = false;
+  workingSince = Date.now();
+  clearInterval(workTimer);
+  updateWork();
+  workTimer = setInterval(updateWork,1000);
+
+  suggestions.replaceChildren();
+  input.value = '';
+  resizeInput();
+
+  store.dispatch({
+    type: 'WEB_CHAT/SEND_MESSAGE',
+    payload: { text }
+  });
+
+  requestAnimationFrame(goToChat);
+}
+
+function renderSuggestions(actions) {
+  suggestions.replaceChildren();
+
+  (actions || []).forEach(action => {
+    const button = document.createElement('button');
+    button.className = 'pill glass chip';
+    button.textContent = action.title || String(action.value || '계속');
+
+    button.addEventListener('click', () => {
+      if (action.type === 'openUrl') {
+        try {
+          const url = new URL(action.value);
+          if (['https:','http:'].includes(url.protocol)) {
+            window.open(url.href,'_blank','noopener,noreferrer');
+          }
+        } catch {}
+      } else {
+        sendMessage(String(action.value || action.title || ''));
+      }
+    });
+
+    suggestions.append(button);
+  });
+}
+
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(entries => {
+    chatVisible = entries[0].isIntersecting;
+    if (chatVisible) resultWaiting = false;
+    updateFloating();
+  }, { threshold: .1 }).observe(card);
+}
+
+floating.addEventListener('click', () => {
+  resultWaiting = false;
+  updateFloating();
+  goToChat();
+});
+
+function setConnected(connected) {
+  body.classList.toggle('is-connected',connected);
+  input.disabled = !connected;
+
+  document.querySelectorAll('[data-example]').forEach(button => {
+    button.disabled = !connected;
+  });
+
+  document.querySelector('.connection-dot').setAttribute(
+    'aria-label',
+    connected ? '연결됨' : '연결 중'
+  );
+
+  resizeInput();
+}
+
+function showError(message) {
+  body.classList.add('is-error');
+  body.classList.remove('is-working','is-long');
+  clearInterval(workTimer);
+  setConnected(false);
+
+  document.getElementById('error-detail').textContent = message;
+  updateFloating();
+}
+
+document.getElementById('retry').addEventListener('click', connect);
+
+/* ③ 원래 연결 값과 요청 흐름 유지 */
     const BROKER_URL = "https://dl-broker-juwon-4jt3z.azurewebsites.net/api/directlineToken";
     const SEALED = "o1EJMuah6ehRacFEw2aZL6JEhimDcJq23ppjYiOuQZgl8Zyh1Gn7iPB-VMpwPf-vRW6jAg790ubVzverWFbVqZiIScrMo3BJdZobkMu5V9owF5gnO44FMrQX_BpEGCt5iTW-oamRs7pikqWciY6i6B0rZeVMNO03L3TUoUE0wV5a6tOfQn5QzQOVB-UkO_A5p55la0SyYO2AeNaep4_hwXlTt00hHCFkdacWMymt2wADuKGeiQJMtGBvOXJgkEfPzyY3LFcZnkAPA_-7jWIJxob1BWMpSa_CaeH31c2GrosBK4vKk7GCuGWTn7s2ylihu5fquaQYBz8Umd8xSgvLgflMhINq9shG77Tcr-aKf4opV45V2xK1DvRy97H1ZJwSuxWL-QJdQ-IUC0OwCuednmd4bWWFOJ7TpjZ4LnPknLOBoOJZv3rORyy1onot6R_O2eUozUbrh6mPha_8nzRcTkWy8TT9TtufpQiJHgNjbWuE9rFccowJIU6uf-jV5758OILae2kgWtwEqWNFSVHXtpPmqbPf26S9-zzXGqDg0YXerx1xoBPXu_4lEXRxB6HJjSN4dy38WpqX-TZw4T7fkAALb5fEA9e7VmWphVKs0dp5LPNUwiLlGYbpb_qxVkl-mPH0BNU84q2W3qHof04dA1V2Bts";
-    const status = document.getElementById("status");
 
-    function showError(message) {
-      status.hidden = false;
-      status.textContent = message;
-    }
+async function connect() {
+  body.classList.remove('is-error');
+  setConnected(false);
+  status.textContent = '팀을 부르는 중…';
 
-    async function connect() {
-      if (!window.WebChat ||
-          typeof WebChat.createDirectLine !== "function" ||
-          typeof WebChat.renderWebChat !== "function") {
-        showError("채팅 구성 요소를 불러오지 못했습니다. 네트워크를 확인한 뒤 새로고침해 주세요.");
-        return;
+  if (connectionSubscription) connectionSubscription.unsubscribe();
+  if (directLine) directLine.end();
+
+  if (
+    !window.WebChat ||
+    typeof WebChat.createDirectLine !== 'function' ||
+    typeof WebChat.renderWebChat !== 'function'
+  ) {
+    showError('채팅 구성 요소를 불러오지 못했습니다. 네트워크를 확인한 뒤 새로고침해 주세요.');
+    return;
+  }
+
+  let response;
+
+  try {
+    // 사전 요청 없이 보내는 기존 CORS 요청
+    response = await fetch(BROKER_URL, {
+      method: "POST",
+      body: JSON.stringify({ sealed: SEALED })
+    });
+  } catch (error) {
+    showError(
+      '서버에 연결하지 못했습니다. 네트워크와 배포 주소를 확인해 주세요.\n' +
+      String(error)
+    );
+    return;
+  }
+
+  if (!response.ok) {
+    showError(
+      '서버가 연결 요청을 처리하지 못했습니다 (HTTP ' +
+      response.status + ').'
+    );
+    return;
+  }
+
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    showError('서버 응답을 읽을 수 없습니다.\n' + String(error));
+    return;
+  }
+
+  if (!data || typeof data.token !== 'string' || !data.token.trim()) {
+    showError('서버에서 연결 토큰을 받지 못했습니다. 암호와 배포 주소를 확인해 주세요.');
+    return;
+  }
+
+  try {
+    directLine = WebChat.createDirectLine({ token: data.token });
+
+    store = WebChat.createStore({}, () => next => action => {
+      const result = next(action);
+
+      if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+        body.classList.remove('is-error');
+        setConnected(true);
       }
 
-      let response;
-      try {
-        // Keep this a simple CORS request; the broker may not support preflight.
-        response = await fetch(BROKER_URL, {
-          method: "POST",
-          body: JSON.stringify({ sealed: SEALED })
-        });
-      } catch {
-        showError("서버에 연결하지 못했습니다. 네트워크와 배포 주소를 확인해 주세요.");
-        return;
-      }
-      if (!response.ok) {
-        showError("서버가 연결 요청을 처리하지 못했습니다 (HTTP " + response.status + ").");
-        return;
+      if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
+        const activity = action.payload.activity;
+
+        if (activity.from?.role !== 'user' && activity.type === 'message') {
+          const wasWorking = body.classList.contains('is-working');
+
+          body.classList.remove('is-working','is-long');
+          clearInterval(workTimer);
+
+          if (wasWorking && !chatVisible) resultWaiting = true;
+
+          renderSuggestions(activity.suggestedActions?.actions);
+          updateFloating();
+        }
       }
 
-      let data;
-      try {
-        data = await response.json();
-      } catch {
-        showError("서버 응답을 읽을 수 없습니다. 잠시 후 다시 시도해 주세요.");
-        return;
-      }
-      if (!data || typeof data.token !== "string" || !data.token.trim()) {
-        showError("서버에서 연결 토큰을 받지 못했습니다. 암호와 배포 주소를 확인해 주세요.");
-        return;
+      if (action.type === 'DIRECT_LINE/CONNECT_REJECTED') {
+        showError(String(action.payload?.error || 'Direct Line 연결 오류'));
       }
 
-      try {
-        const directLine = WebChat.createDirectLine({ token: data.token });
-        status.hidden = true;
-        directLine.postActivity({
-          type: "event", name: "startConversation", from: { id: "user" }
-        }).subscribe({
-          error: () => showError("첫 인사를 요청하지 못했습니다. 채팅창에 메시지를 입력해 주세요.")
-        });
-        WebChat.renderWebChat({ directLine, locale: "ko-KR" }, document.getElementById("webchat"));
-      } catch {
-        showError("채팅을 시작하지 못했습니다. 새로고침 후 다시 시도해 주세요.");
-      }
-    }
+      return result;
+    });
 
-    connect();
-  </script>
+    directLine.postActivity({
+      type: "event",
+      name: "startConversation",
+      from: { id: "user" }
+    }).subscribe({
+      error: error => {
+        status.textContent = '첫 인사를 요청하지 못했습니다. 메시지를 입력해 주세요.';
+        console.warn('startConversation',error);
+      }
+    });
+
+    const styleOptions = {
+      hideSendBox: true,
+      rootHeight: "100%",
+      backgroundColor: "transparent",
+      primaryFont: "'Pretendard Variable', -apple-system, sans-serif",
+      bubbleBackground: "transparent",
+      bubbleBorderWidth: 0,
+      bubbleMaxWidth: 720,
+      bubbleMinWidth: 0,
+      bubbleFromUserBackground: "linear-gradient(135deg, #EEF0FF, #FBEFFF)",
+      bubbleFromUserBorderWidth: 0,
+      bubbleFromUserBorderRadius: 20,
+      hideUploadButton: true,
+      botAvatarInitials: '',
+      userAvatarInitials: '',
+      avatarSize: 0,
+      showAvatarInGroup: false,
+      sendBoxHeight: 0,
+      fontSizeSmall: '11px',
+      fontSizeMedium: '13px',
+      bubbleTextColor: '#14142B',
+      bubbleFromUserTextColor: '#14142B',
+      bubbleNubSize: 0,
+      bubbleFromUserNubSize: 0,
+      paddingRegular: 14
+    };
+
+    WebChat.renderWebChat({
+      directLine,
+      store,
+      styleOptions,
+      locale: "ko-KR"
+    }, document.getElementById('webchat'));
+
+    connectionSubscription = directLine.connectionStatus$.subscribe(value => {
+      if (value === 4 || value === 5) {
+        showError('Direct Line 연결이 종료되었습니다. 다시 시도해 주세요.');
+      }
+    });
+  } catch (error) {
+    showError('채팅을 시작하지 못했습니다.\n' + String(error));
+  }
+}
+
+connect();
+</script>
 </body>
 </html>
